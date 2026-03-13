@@ -46,6 +46,46 @@ const SERVICES = [
     title: "Bike Wash",
     desc: "Thorough professional wash for motorcycles and bicycles, removing dirt and grime to restore a showroom shine.",
   },
+  {
+    icon: Droplets,
+    title: "Car Wash",
+    desc: "Full exterior wash and rinse leaving your car spotless and gleaming with every visit.",
+  },
+  {
+    icon: Sparkles,
+    title: "Detailing",
+    desc: "Deep interior and exterior detailing for a true showroom finish that turns heads everywhere.",
+  },
+  {
+    icon: Wand2,
+    title: "Polishing",
+    desc: "Machine polishing to remove swirl marks and restore paint clarity to factory-fresh brilliance.",
+  },
+  {
+    icon: Shield,
+    title: "Ceramic Coating",
+    desc: "Long-lasting hydrophobic ceramic coating for superior gloss and protection against the elements.",
+  },
+  {
+    icon: Film,
+    title: "Window Film",
+    desc: "Professional window tinting for privacy, heat reduction, and UV protection tailored to your needs.",
+  },
+  {
+    icon: Layers,
+    title: "PPF",
+    desc: "Paint Protection Film that guards against chips, scratches, and road debris with an invisible shield.",
+  },
+  {
+    icon: Car,
+    title: "Car Wrapping",
+    desc: "Full or partial vinyl wraps to transform and protect your vehicle's appearance with endless color options.",
+  },
+  {
+    icon: Package,
+    title: "Accessories",
+    desc: "Premium automotive accessories to enhance, personalize, and elevate your driving experience.",
+  },
 ];
 
 const GALLERY = [
@@ -67,7 +107,17 @@ const GALLERY = [
   },
 ];
 
-const SERVICE_OPTIONS = [{ value: ServiceType.bikeWash, label: "Bike Wash" }];
+const SERVICE_OPTIONS = [
+  { value: ServiceType.bikeWash, label: "Bike Wash" },
+  { value: ServiceType.carWashing, label: "Car Wash" },
+  { value: ServiceType.detailing, label: "Detailing" },
+  { value: ServiceType.polishing, label: "Polishing" },
+  { value: ServiceType.ceramicCoating, label: "Ceramic Coating" },
+  { value: ServiceType.windowFilm, label: "Window Film" },
+  { value: ServiceType.ppf, label: "PPF" },
+  { value: ServiceType.wrapping, label: "Car Wrapping" },
+  { value: ServiceType.carAccessories, label: "Accessories" },
+];
 
 function GoldDivider() {
   return (
