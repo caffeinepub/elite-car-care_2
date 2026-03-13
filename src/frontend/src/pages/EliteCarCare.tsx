@@ -10,20 +10,22 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import {
-  Bike,
   Car,
   ChevronDown,
+  Clock,
   Droplets,
   Film,
   Layers,
   Mail,
   MapPin,
   Menu,
+  MessageCircle,
   Package,
   Phone,
   Shield,
   Sparkles,
   Wand2,
+  Wind,
   X,
 } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
@@ -40,49 +42,9 @@ const NAV_LINKS = [
 
 const SERVICES = [
   {
-    icon: Bike,
+    icon: Wind,
     title: "Bike Wash",
-    desc: "Thorough cleaning and care for motorcycles and bicycles, removing grime and protecting every surface.",
-  },
-  {
-    icon: Droplets,
-    title: "Car Wash",
-    desc: "Premium exterior hand wash using pH-neutral soaps and ultra-soft mitts for a flawless, streak-free finish.",
-  },
-  {
-    icon: Sparkles,
-    title: "Detailing",
-    desc: "Comprehensive bumper-to-bumper detail that restores your vehicle to pristine showroom condition.",
-  },
-  {
-    icon: Wand2,
-    title: "Polishing",
-    desc: "Professional machine polish removes swirls, scratches and paint defects, revealing a mirror-like finish.",
-  },
-  {
-    icon: Layers,
-    title: "Ceramic Coating",
-    desc: "Nano-ceramic hydrophobic layer bonds to your paint, delivering brilliant, lasting gloss and protection.",
-  },
-  {
-    icon: Film,
-    title: "Window Film",
-    desc: "High-performance tint film offers superior UV protection, heat rejection and enhanced privacy.",
-  },
-  {
-    icon: Shield,
-    title: "PPF (Paint Protection Film)",
-    desc: "Multi-layer film shields your paint from road debris, chips and contaminants with self-healing technology.",
-  },
-  {
-    icon: Car,
-    title: "Wrapping",
-    desc: "Full or partial premium vinyl wrap transforms your vehicle's appearance with endless colour choices.",
-  },
-  {
-    icon: Package,
-    title: "Car Accessories",
-    desc: "Premium accessories and bespoke upgrades carefully tailored to complement and elevate your vehicle.",
+    desc: "Thorough professional wash for motorcycles and bicycles, removing dirt and grime to restore a showroom shine.",
   },
 ];
 
@@ -105,17 +67,7 @@ const GALLERY = [
   },
 ];
 
-const SERVICE_OPTIONS = [
-  { value: ServiceType.carWashing, label: "Car Wash" },
-  { value: ServiceType.bikeWash, label: "Bike Wash" },
-  { value: ServiceType.detailing, label: "Detailing" },
-  { value: ServiceType.polishing, label: "Polishing" },
-  { value: ServiceType.ceramicCoating, label: "Ceramic Coating" },
-  { value: ServiceType.windowFilm, label: "Window Film" },
-  { value: ServiceType.ppf, label: "PPF (Paint Protection Film)" },
-  { value: ServiceType.wrapping, label: "Wrapping" },
-  { value: ServiceType.carAccessories, label: "Car Accessories" },
-];
+const SERVICE_OPTIONS = [{ value: ServiceType.bikeWash, label: "Bike Wash" }];
 
 function GoldDivider() {
   return (
@@ -134,8 +86,8 @@ function LogoText({ size = "md" }: { size?: "sm" | "md" }) {
         size === "sm" ? "text-sm" : "text-lg"
       }`}
     >
-      <span className="text-yellow-400">Elite</span>
-      <span className="text-white"> Car Care</span>
+      <span className="text-gold">Elite</span>
+      <span className="text-foreground"> Car Care</span>
     </span>
   );
 }
@@ -214,7 +166,7 @@ export default function EliteCarCare() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "bg-background/95 backdrop-blur-md border-b border-border shadow-lg"
+            ? "bg-background/95 backdrop-blur-md border-b border-border shadow-sm"
             : "bg-transparent"
         }`}
       >
@@ -243,7 +195,7 @@ export default function EliteCarCare() {
             <Button
               size="sm"
               onClick={() => scrollTo("#contact")}
-              className="gradient-gold text-background font-semibold tracking-wider text-xs uppercase px-5 hover:opacity-90 transition-opacity"
+              className="gradient-gold text-white font-semibold tracking-wider text-xs uppercase px-5 hover:opacity-90 transition-opacity"
             >
               Book Now
             </Button>
@@ -301,8 +253,9 @@ export default function EliteCarCare() {
               "url('/assets/generated/hero-car.dim_1600x900.jpg')",
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background" />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/50 via-transparent to-background/20" />
+        {/* Dark overlays to keep hero text readable regardless of page theme */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-black/20" />
         <motion.div
           className="relative z-10 text-center px-6 max-w-4xl mx-auto"
           initial="hidden"
@@ -317,7 +270,7 @@ export default function EliteCarCare() {
           </motion.p>
           <motion.h1
             variants={fadeUp}
-            className="font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-tight mb-6"
+            className="font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-tight mb-6 text-white"
           >
             Where Perfection
             <br />
@@ -325,7 +278,7 @@ export default function EliteCarCare() {
           </motion.h1>
           <motion.p
             variants={fadeUp}
-            className="text-muted-foreground text-lg md:text-xl max-w-xl mx-auto mb-10 leading-relaxed"
+            className="text-white/70 text-lg md:text-xl max-w-xl mx-auto mb-10 leading-relaxed"
           >
             Premium car care services for those who demand the best.
           </motion.p>
@@ -337,7 +290,7 @@ export default function EliteCarCare() {
               size="lg"
               data-ocid="hero.primary_button"
               onClick={() => scrollTo("#contact")}
-              className="gradient-gold text-background font-bold tracking-widest uppercase px-10 text-sm hover:opacity-90 transition-all shadow-gold-lg"
+              className="gradient-gold text-white font-bold tracking-widest uppercase px-10 text-sm hover:opacity-90 transition-all shadow-gold-lg"
             >
               Book Now
             </Button>
@@ -346,7 +299,7 @@ export default function EliteCarCare() {
               variant="outline"
               data-ocid="hero.secondary_button"
               onClick={() => scrollTo("#services")}
-              className="border-gold text-gold hover:bg-gold hover:text-background tracking-widest uppercase text-sm transition-all"
+              className="border-gold text-gold hover:bg-gold hover:text-white tracking-widest uppercase text-sm transition-all bg-transparent"
             >
               Our Services
             </Button>
@@ -416,11 +369,7 @@ export default function EliteCarCare() {
       </section>
 
       {/* ── GALLERY ── */}
-      <section
-        id="gallery"
-        className="py-24 px-6"
-        style={{ background: "oklch(0.12 0 0)" }}
-      >
+      <section id="gallery" className="py-24 px-6 bg-muted">
         <div className="max-w-7xl mx-auto">
           <motion.div
             className="text-center mb-16"
@@ -463,10 +412,10 @@ export default function EliteCarCare() {
                   alt={img.label}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6">
                   <div className="h-px w-8 bg-gold mb-3" />
-                  <p className="font-display text-lg font-semibold">
+                  <p className="font-display text-lg font-semibold text-white">
                     {img.label}
                   </p>
                 </div>
@@ -477,11 +426,7 @@ export default function EliteCarCare() {
       </section>
 
       {/* ── ABOUT ── */}
-      <section
-        id="about"
-        className="py-24 px-6"
-        style={{ background: "oklch(0.12 0 0)" }}
-      >
+      <section id="about" className="py-24 px-6 bg-background">
         <div className="max-w-7xl mx-auto">
           <motion.div
             className="grid lg:grid-cols-2 gap-16 items-center"
@@ -516,7 +461,7 @@ export default function EliteCarCare() {
               </motion.p>
               <motion.div variants={stagger} className="grid grid-cols-3 gap-6">
                 {[
-                  { stat: "10+", label: "Years Experience" },
+                  { stat: "15+", label: "Years Experience" },
                   { stat: "5,000+", label: "Cars Detailed" },
                   { stat: "100%", label: "Satisfaction" },
                 ].map((item) => (
@@ -548,7 +493,7 @@ export default function EliteCarCare() {
       </section>
 
       {/* ── CONTACT ── */}
-      <section id="contact" className="py-24 px-6 bg-background">
+      <section id="contact" className="py-24 px-6 bg-muted">
         <div className="max-w-3xl mx-auto">
           <motion.div
             className="text-center mb-14"
@@ -593,7 +538,7 @@ export default function EliteCarCare() {
                   onChange={(e) =>
                     setForm((p) => ({ ...p, name: e.target.value }))
                   }
-                  className="bg-card border-border focus:border-gold transition-colors"
+                  className="bg-background border-border focus:border-gold transition-colors"
                 />
               </div>
               <div className="space-y-2">
@@ -609,7 +554,7 @@ export default function EliteCarCare() {
                   onChange={(e) =>
                     setForm((p) => ({ ...p, email: e.target.value }))
                   }
-                  className="bg-card border-border focus:border-gold transition-colors"
+                  className="bg-background border-border focus:border-gold transition-colors"
                 />
               </div>
             </motion.div>
@@ -625,7 +570,7 @@ export default function EliteCarCare() {
                   onChange={(e) =>
                     setForm((p) => ({ ...p, phone: e.target.value }))
                   }
-                  className="bg-card border-border focus:border-gold transition-colors"
+                  className="bg-background border-border focus:border-gold transition-colors"
                 />
               </div>
               <div className="space-y-2">
@@ -640,7 +585,7 @@ export default function EliteCarCare() {
                   onChange={(e) =>
                     setForm((p) => ({ ...p, date: e.target.value }))
                   }
-                  className="bg-card border-border focus:border-gold transition-colors"
+                  className="bg-background border-border focus:border-gold transition-colors"
                 />
               </div>
             </motion.div>
@@ -656,11 +601,11 @@ export default function EliteCarCare() {
               >
                 <SelectTrigger
                   data-ocid="contact.select"
-                  className="bg-card border-border focus:border-gold"
+                  className="bg-background border-border focus:border-gold"
                 >
                   <SelectValue placeholder="Select a service…" />
                 </SelectTrigger>
-                <SelectContent className="bg-card border-border">
+                <SelectContent className="bg-background border-border">
                   {SERVICE_OPTIONS.map((o) => (
                     <SelectItem key={o.value} value={o.value}>
                       {o.label}
@@ -681,7 +626,7 @@ export default function EliteCarCare() {
                 onChange={(e) =>
                   setForm((p) => ({ ...p, message: e.target.value }))
                 }
-                className="bg-card border-border focus:border-gold transition-colors resize-none"
+                className="bg-background border-border focus:border-gold transition-colors resize-none"
               />
             </motion.div>
             <motion.div variants={fadeUp}>
@@ -690,7 +635,7 @@ export default function EliteCarCare() {
                 size="lg"
                 disabled={submitBooking.isPending}
                 data-ocid="contact.submit_button"
-                className="w-full gradient-gold text-background font-bold tracking-widest uppercase text-sm hover:opacity-90 transition-opacity shadow-gold"
+                className="w-full gradient-gold text-white font-bold tracking-widest uppercase text-sm hover:opacity-90 transition-opacity shadow-gold"
               >
                 {submitBooking.isPending ? "Submitting…" : "Request Booking"}
               </Button>
@@ -701,7 +646,7 @@ export default function EliteCarCare() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 data-ocid="contact.success_state"
-                className="border border-gold-dim bg-gold/5 rounded-sm p-4 text-center"
+                className="border border-gold-dim bg-gold/10 rounded-sm p-4 text-center"
               >
                 <p className="text-gold text-sm font-semibold">
                   ✓ Booking Request Submitted
@@ -731,18 +676,40 @@ export default function EliteCarCare() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, amount: 0 }}
             transition={{ delay: 0.3 }}
-            className="mt-16 grid sm:grid-cols-3 gap-6 text-center"
+            className="mt-16 grid sm:grid-cols-2 md:grid-cols-5 gap-6 text-center"
           >
-            {[
-              { icon: Phone, label: "+91 9954018547" },
-              { icon: Mail, label: "hello@elitecarcare.com" },
-              { icon: MapPin, label: "Silchar, Assam" },
-            ].map((c) => (
-              <div key={c.label} className="flex flex-col items-center gap-3">
-                <c.icon className="w-5 h-5 text-gold" />
-                <p className="text-muted-foreground text-sm">{c.label}</p>
-              </div>
-            ))}
+            <div className="flex flex-col items-center gap-3">
+              <Phone className="w-5 h-5 text-gold" />
+              <p className="text-muted-foreground text-sm">+91 9954018547</p>
+            </div>
+            <div className="flex flex-col items-center gap-3">
+              <Mail className="w-5 h-5 text-gold" />
+              <p className="text-muted-foreground text-sm">
+                mdsuyev89@gmail.com
+              </p>
+            </div>
+            <div className="flex flex-col items-center gap-3">
+              <MapPin className="w-5 h-5 text-gold" />
+              <p className="text-muted-foreground text-sm">Silchar, Assam</p>
+            </div>
+            <a
+              href="https://wa.me/919954018547"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center gap-3 group"
+              data-ocid="contact.whatsapp.button"
+            >
+              <MessageCircle className="w-5 h-5 text-gold" />
+              <p className="text-muted-foreground text-sm group-hover:text-gold transition-colors">
+                WhatsApp
+              </p>
+            </a>
+            <div className="flex flex-col items-center gap-3">
+              <Clock className="w-5 h-5 text-gold" />
+              <p className="text-muted-foreground text-sm">
+                Mon – Sun: 9 AM – 10 PM
+              </p>
+            </div>
           </motion.div>
         </div>
       </section>
