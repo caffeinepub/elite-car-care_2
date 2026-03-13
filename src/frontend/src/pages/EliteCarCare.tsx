@@ -12,7 +12,6 @@ import { Textarea } from "@/components/ui/textarea";
 import {
   Bike,
   Car,
-  Check,
   ChevronDown,
   Droplets,
   Film,
@@ -24,7 +23,6 @@ import {
   Phone,
   Shield,
   Sparkles,
-  Star,
   Wand2,
   X,
 } from "lucide-react";
@@ -35,7 +33,6 @@ import { ServiceType, useSubmitBooking } from "../hooks/useQueries";
 
 const NAV_LINKS = [
   { label: "Services", href: "#services" },
-  { label: "Pricing", href: "#pricing" },
   { label: "Gallery", href: "#gallery" },
   { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
@@ -89,44 +86,6 @@ const SERVICES = [
   },
 ];
 
-const PACKAGES = [
-  {
-    name: "Essential",
-    price: "$89",
-    features: [
-      "Exterior hand wash",
-      "Hand dry & buff",
-      "Tire shine & dressing",
-      "Window clean (exterior)",
-    ],
-    popular: false,
-  },
-  {
-    name: "Premium",
-    price: "$199",
-    features: [
-      "Everything in Essential",
-      "Full interior vacuum",
-      "Leather conditioning",
-      "Clay bar treatment",
-      "Tyre & wheel detail",
-    ],
-    popular: true,
-  },
-  {
-    name: "Elite",
-    price: "$399",
-    features: [
-      "Everything in Premium",
-      "Full paint correction",
-      "Ceramic coating application",
-      "Engine bay clean",
-      "6-month protection warranty",
-    ],
-    popular: false,
-  },
-];
-
 const GALLERY = [
   {
     src: "/assets/generated/before-after-1.dim_800x500.jpg",
@@ -143,27 +102,6 @@ const GALLERY = [
   {
     src: "/assets/generated/facility.dim_800x500.jpg",
     label: "Our Facility",
-  },
-];
-
-const TESTIMONIALS = [
-  {
-    quote:
-      "The attention to detail is unmatched. My Porsche looks better than the day I bought it.",
-    name: "James R.",
-    car: "Porsche 911",
-  },
-  {
-    quote:
-      "Elite Car Care has spoiled me. I won't trust anyone else with my vehicles.",
-    name: "Sarah M.",
-    car: "Mercedes S-Class",
-  },
-  {
-    quote:
-      "Worth every penny. The ceramic coating they applied has kept my car flawless for months.",
-    name: "David K.",
-    car: "BMW M4",
   },
 ];
 
@@ -185,16 +123,6 @@ function GoldDivider() {
       <div className="h-px w-16 bg-gold-dim" />
       <div className="w-1.5 h-1.5 rotate-45 bg-gold" />
       <div className="h-px w-16 bg-gold-dim" />
-    </div>
-  );
-}
-
-function StarRating() {
-  return (
-    <div className="flex gap-0.5">
-      {["s1", "s2", "s3", "s4", "s5"].map((k) => (
-        <Star key={k} className="w-4 h-4 fill-gold text-gold" />
-      ))}
     </div>
   );
 }
@@ -444,7 +372,7 @@ export default function EliteCarCare() {
             className="text-center mb-16"
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0 }}
             variants={stagger}
           >
             <motion.p
@@ -465,7 +393,7 @@ export default function EliteCarCare() {
             className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0 }}
             variants={stagger}
           >
             {SERVICES.map((s) => (
@@ -487,9 +415,9 @@ export default function EliteCarCare() {
         </div>
       </section>
 
-      {/* ── PRICING ── */}
+      {/* ── GALLERY ── */}
       <section
-        id="pricing"
+        id="gallery"
         className="py-24 px-6"
         style={{ background: "oklch(0.12 0 0)" }}
       >
@@ -498,94 +426,7 @@ export default function EliteCarCare() {
             className="text-center mb-16"
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
-            variants={stagger}
-          >
-            <motion.p
-              variants={fadeUp}
-              className="text-gold text-xs tracking-[0.4em] uppercase mb-3 font-medium"
-            >
-              Transparent Pricing
-            </motion.p>
-            <motion.h2
-              variants={fadeUp}
-              className="font-display text-4xl md:text-5xl font-bold"
-            >
-              Service Packages
-            </motion.h2>
-            <GoldDivider />
-          </motion.div>
-          <motion.div
-            className="grid md:grid-cols-3 gap-6 items-start"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={stagger}
-          >
-            {PACKAGES.map((pkg, i) => (
-              <motion.div
-                key={pkg.name}
-                variants={fadeUp}
-                data-ocid={`pricing.item.${i + 1}`}
-                className={`relative rounded-sm p-8 border transition-all duration-300 ${
-                  pkg.popular
-                    ? "border-gold bg-card shadow-gold-lg"
-                    : "border-border bg-card hover:border-gold-dim hover:shadow-gold"
-                }`}
-              >
-                {pkg.popular && (
-                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
-                    <span className="gradient-gold text-background text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full">
-                      Most Popular
-                    </span>
-                  </div>
-                )}
-                <p className="text-muted-foreground text-xs uppercase tracking-widest mb-2">
-                  {pkg.name}
-                </p>
-                <p className="font-display text-5xl font-bold mb-1">
-                  {pkg.popular ? (
-                    <span className="text-gradient-gold">{pkg.price}</span>
-                  ) : (
-                    pkg.price
-                  )}
-                </p>
-                <p className="text-muted-foreground text-xs mb-8">
-                  per service
-                </p>
-                <ul className="space-y-3 mb-10">
-                  {pkg.features.map((f) => (
-                    <li key={f} className="flex items-start gap-3 text-sm">
-                      <Check className="w-4 h-4 text-gold shrink-0 mt-0.5" />
-                      <span className="text-muted-foreground">{f}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Button
-                  onClick={() => scrollTo("#contact")}
-                  className={`w-full tracking-widest uppercase text-xs font-bold ${
-                    pkg.popular
-                      ? "gradient-gold text-background hover:opacity-90"
-                      : "border border-gold-dim text-gold hover:bg-gold hover:text-background"
-                  } transition-all`}
-                  variant={pkg.popular ? "default" : "outline"}
-                >
-                  Select Package
-                </Button>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ── GALLERY ── */}
-      <section id="gallery" className="py-24 px-6 bg-background">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            className="text-center mb-16"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0 }}
             variants={stagger}
           >
             <motion.p
@@ -606,7 +447,7 @@ export default function EliteCarCare() {
             className="grid sm:grid-cols-2 gap-4"
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0 }}
             variants={stagger}
           >
             {GALLERY.map((img, i) => (
@@ -635,70 +476,18 @@ export default function EliteCarCare() {
         </div>
       </section>
 
-      {/* ── TESTIMONIALS ── */}
+      {/* ── ABOUT ── */}
       <section
-        id="testimonials"
+        id="about"
         className="py-24 px-6"
         style={{ background: "oklch(0.12 0 0)" }}
       >
         <div className="max-w-7xl mx-auto">
           <motion.div
-            className="text-center mb-16"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={stagger}
-          >
-            <motion.p
-              variants={fadeUp}
-              className="text-gold text-xs tracking-[0.4em] uppercase mb-3 font-medium"
-            >
-              Client Stories
-            </motion.p>
-            <motion.h2
-              variants={fadeUp}
-              className="font-display text-4xl md:text-5xl font-bold"
-            >
-              Testimonials
-            </motion.h2>
-            <GoldDivider />
-          </motion.div>
-          <motion.div
-            className="grid md:grid-cols-3 gap-6"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={stagger}
-          >
-            {TESTIMONIALS.map((t) => (
-              <motion.div
-                key={t.name}
-                variants={fadeUp}
-                className="bg-card border border-gold-dim rounded-sm p-8 hover:shadow-gold transition-all duration-300"
-              >
-                <StarRating />
-                <blockquote className="mt-5 mb-6 text-foreground/90 leading-relaxed text-sm italic font-display text-base">
-                  &ldquo;{t.quote}&rdquo;
-                </blockquote>
-                <div className="h-px bg-gold-dim mb-5" />
-                <p className="font-semibold text-sm">{t.name}</p>
-                <p className="text-gold text-xs tracking-wider uppercase mt-1">
-                  {t.car}
-                </p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ── ABOUT ── */}
-      <section id="about" className="py-24 px-6 bg-background">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
             className="grid lg:grid-cols-2 gap-16 items-center"
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0 }}
             variants={stagger}
           >
             <div>
@@ -759,17 +548,13 @@ export default function EliteCarCare() {
       </section>
 
       {/* ── CONTACT ── */}
-      <section
-        id="contact"
-        className="py-24 px-6"
-        style={{ background: "oklch(0.12 0 0)" }}
-      >
+      <section id="contact" className="py-24 px-6 bg-background">
         <div className="max-w-3xl mx-auto">
           <motion.div
             className="text-center mb-14"
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0 }}
             variants={stagger}
           >
             <motion.p
@@ -791,7 +576,7 @@ export default function EliteCarCare() {
             onSubmit={handleSubmit}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0 }}
             variants={stagger}
             className="space-y-6"
           >
@@ -944,12 +729,12 @@ export default function EliteCarCare() {
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0 }}
             transition={{ delay: 0.3 }}
             className="mt-16 grid sm:grid-cols-3 gap-6 text-center"
           >
             {[
-              { icon: Phone, label: "+1 (800) ELITE-CAR" },
+              { icon: Phone, label: "+91 9954018547" },
               { icon: Mail, label: "hello@elitecarcare.com" },
               { icon: MapPin, label: "123 Prestige Ave, Beverly Hills" },
             ].map((c) => (
