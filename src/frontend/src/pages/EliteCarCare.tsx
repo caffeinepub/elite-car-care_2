@@ -25,7 +25,6 @@ import {
   Shield,
   Sparkles,
   Wand2,
-  Wind,
   X,
 } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
@@ -41,11 +40,6 @@ const NAV_LINKS = [
 ];
 
 const SERVICES = [
-  {
-    icon: Wind,
-    title: "Bike Wash",
-    desc: "Thorough professional wash for motorcycles and bicycles, removing dirt and grime to restore a showroom shine.",
-  },
   {
     icon: Droplets,
     title: "Car Wash",
@@ -108,7 +102,6 @@ const GALLERY = [
 ];
 
 const SERVICE_OPTIONS = [
-  { value: ServiceType.bikeWash, label: "Bike Wash" },
   { value: ServiceType.carWashing, label: "Car Wash" },
   { value: ServiceType.detailing, label: "Detailing" },
   { value: ServiceType.polishing, label: "Polishing" },
