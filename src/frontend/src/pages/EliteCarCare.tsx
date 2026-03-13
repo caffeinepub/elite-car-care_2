@@ -736,7 +736,7 @@ export default function EliteCarCare() {
             {[
               { icon: Phone, label: "+91 9954018547" },
               { icon: Mail, label: "hello@elitecarcare.com" },
-              { icon: MapPin, label: "123 Prestige Ave, Beverly Hills" },
+              { icon: MapPin, label: "Silchar, Assam" },
             ].map((c) => (
               <div key={c.label} className="flex flex-col items-center gap-3">
                 <c.icon className="w-5 h-5 text-gold" />
